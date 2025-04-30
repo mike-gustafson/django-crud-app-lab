@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Welcome to Game Collector</h1>
+<p>Track your game systems, games, and accessories in one place!</p>
+{% if not user.is_authenticated %}
+    <p>Please sign up or log in to get started.</p>
+{% endif %}
+{% endblock %} 

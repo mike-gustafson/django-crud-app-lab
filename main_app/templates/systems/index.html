@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>My Game Systems</h1>
+<a href="{% url 'systems_create' %}" class="btn">Add New System</a>
+
+{% if systems %}
+    <div class="systems-grid">
+        {% for system in systems %}
+            <div class="system-card">
+                <h2>{{ system.name }}</h2>
+                <p>Manufacturer: {{ system.manufacturer }}</p>
+                <p>Release Year: {{ system.release_year }}</p>
+                <a href="{% url 'systems_detail' system.id %}" class="btn">View Details</a>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>You haven't added any systems yet.</p>
+{% endif %}
+{% endblock %} 

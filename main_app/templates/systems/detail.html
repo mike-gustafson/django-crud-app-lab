@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ system.name }}</h1>
+<p>Manufacturer: {{ system.manufacturer }}</p>
+<p>Release Year: {{ system.release_year }}</p>
+
+<div class="section">
+    <h2>Games</h2>
+    <a href="{% url 'games_create' system.id %}" class="btn">Add Game</a>
+    {% if games %}
+        <ul class="item-list">
+            {% for game in games %}
+                <li>
+                    <a href="{% url 'games_detail' game.id %}">{{ game.title }} ({{ game.release_year }})</a>
+                    {% if game.user == user %}
+                        <div class="item-actions">
+                            <a href="{% url 'games_update' game.id %}" class="btn">Edit</a>
+                            <a href="{% url 'games_delete' game.id %}" class="btn btn-danger">Delete</a>
+                        </div>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No games added yet.</p>
+    {% endif %}
+</div>
+
+<div class="section">
+    <h2>Accessories</h2>
+    <a href="{% url 'accessories_create' system.id %}" class="btn">Add Accessory</a>
+    {% if accessories %}
+        <ul class="item-list">
+            {% for accessory in accessories %}
+                <li>
+                    <a href="{% url 'accessories_detail' accessory.id %}">{{ accessory.name }}</a>
+                    {% if accessory.user == user %}
+                        <div class="item-actions">
+                            <a href="{% url 'accessories_update' accessory.id %}" class="btn">Edit</a>
+                            <a href="{% url 'accessories_delete' accessory.id %}" class="btn btn-danger">Delete</a>
+                        </div>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No accessories added yet.</p>
+    {% endif %}
+</div>
+
+<a href="{% url 'systems_index' %}" class="btn">Back to Systems</a>
+{% endblock %} 

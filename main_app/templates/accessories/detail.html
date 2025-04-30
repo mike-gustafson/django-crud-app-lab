@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="detail-view">
+    <h1>{{ accessory.name }}</h1>
+    <p>System: {{ accessory.system.name }}</p>
+    <p>Description: {{ accessory.description }}</p>
+    <p>Added by: {{ accessory.user.username }}</p>
+
+    {% if accessory.user == user %}
+    <div class="action-buttons">
+        <a href="{% url 'accessories_update' accessory.id %}" class="btn">Edit Accessory</a>
+        <a href="{% url 'accessories_delete' accessory.id %}" class="btn btn-danger">Delete Accessory</a>
+    </div>
+    {% endif %}
+
+    <a href="{% url 'systems_detail' accessory.system.id %}" class="btn">Back to System</a>
+</div>
+{% endblock %} 

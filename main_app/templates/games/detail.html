@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="detail-view">
+    <h1>{{ game.title }}</h1>
+    <p>System: {{ game.system.name }}</p>
+    <p>Release Year: {{ game.release_year }}</p>
+    <p>Added by: {{ game.user.username }}</p>
+
+    {% if game.user == user %}
+    <div class="action-buttons">
+        <a href="{% url 'games_update' game.id %}" class="btn">Edit Game</a>
+        <a href="{% url 'games_delete' game.id %}" class="btn btn-danger">Delete Game</a>
+    </div>
+    {% endif %}
+
+    <a href="{% url 'systems_detail' game.system.id %}" class="btn">Back to System</a>
+</div>
+{% endblock %} 

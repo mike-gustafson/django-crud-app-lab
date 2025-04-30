@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="form-view">
+    <h1>Edit {{ game.title }}</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="action-buttons">
+            <button type="submit" class="btn">Update Game</button>
+            <a href="{% url 'games_detail' game.id %}" class="btn">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %} 

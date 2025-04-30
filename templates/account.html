@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="account-container">
+    <h1>My Account</h1>
+    
+    <div class="account-info">
+        <div class="info-section">
+            <h2>Profile Information</h2>
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Date Joined:</strong> {{ user.date_joined|date:"F j, Y" }}</p>
+            <p><strong>Last Login:</strong> {{ user.last_login|date:"F j, Y" }}</p>
+        </div>
+
+        <div class="info-section">
+            <h2>Collection Stats</h2>
+            <p><strong>Systems:</strong> {{ systems_count }}</p>
+            <p><strong>Games:</strong> {{ games_count }}</p>
+            <p><strong>Accessories:</strong> {{ accessories_count }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %} 
